@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Travel Planner | เที่ยวสบายสำหรับทุกวัย</title>
+<title>AI Travel Planner | วางแผนเที่ยวทั่วไทยสำหรับทุกวัย</title>
 <style>
 :root{--navy:#173b4d;--teal:#167d78;--mint:#e9f6f2;--gold:#f4bd62;--ink:#20343b;--muted:#63767b;--line:#dce8e5;--white:#fff;--bg:#f6faf9}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
@@ -29,6 +29,7 @@ button{border:0;border-radius:13px;padding:13px 18px;font:inherit;font-weight:80
 .empty{border:1px dashed #b9d2cb;border-radius:15px;padding:26px 18px;text-align:center;color:var(--muted);background:#fbfefd}
 .day{border:1px solid var(--line);border-radius:15px;padding:15px;margin-top:13px}.day h3{margin:0 0 9px;color:var(--teal);font-size:1.05rem}.stop{display:grid;grid-template-columns:66px 1fr;gap:10px;padding:10px 0;border-top:1px solid #edf2f0}.time{font-weight:800;color:var(--navy);font-size:.92rem}.stop p{margin:2px 0 0;color:var(--muted);font-size:.94rem}
 .notice{margin-top:14px;padding:12px 14px;background:#fff7e8;border-radius:12px;color:#6f552a;font-size:.9rem}
+.live-tools{margin-top:20px;border-top:1px solid var(--line);padding-top:16px}.place-card{border:1px solid var(--line);border-radius:13px;padding:13px;margin:10px 0;background:#fbfefd}.place-card p{margin:5px 0;color:var(--muted);font-size:.92rem}.place-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.place-actions a{display:inline-block;background:#e8f4f0;color:#155f5b;padding:8px 10px;border-radius:9px;text-decoration:none;font-weight:700;font-size:.9rem}.status{font-size:.9rem;color:var(--muted);padding:8px 0}.tag{display:inline-block;border-radius:99px;background:#e8f4f0;color:#155f5b;padding:3px 8px;font-size:.78rem;font-weight:700;margin:2px}.small-btn{background:#e8f4f0;color:#155f5b;padding:10px 12px}.api-box{font-size:.9rem;background:#f1f7f5;border-radius:12px;padding:12px;margin-top:12px}.api-box code{overflow-wrap:anywhere}
 footer{text-align:center;padding:22px;color:var(--muted);font-size:.9rem}
 @media(max-width:800px){.hero,.layout{grid-template-columns:1fr}.hero{margin-top:22px}.hero-art{min-height:150px;font-size:4.5rem}.hero{gap:18px}.panel{padding:17px}}
 @media(max-width:460px){.two,.access-grid{grid-template-columns:1fr}.nav small{display:none}.hero{padding:0 16px}main{padding:0 14px 35px}.panel{padding:15px}}
@@ -49,9 +50,10 @@ footer{text-align:center;padding:22px;color:var(--muted);font-size:.9rem}
    <form id="planner">
     <div class="two">
      <div class="field"><label for="age">อายุผู้สูงอายุ (ปี)</label><input id="age" type="number" min="50" max="120" value="70" required><div class="hint">ระบุอายุจริงของผู้เดินทาง</div></div>
-     <div class="field"><label for="days">ระยะเวลาเที่ยว</label><select id="days"><option value="1">1 วัน</option><option value="2" selected>2 วัน</option><option value="3">3 วัน</option></select></div>
+     <div class="field"><label for="days">ระยะเวลาเที่ยว (วัน)</label><input id="days" type="number" min="1" max="60" step="1" value="2" required inputmode="numeric" placeholder="ระบุจำนวนวัน"><div class="hint">พิมพ์จำนวนวันได้เอง ตั้งแต่ 1–60 วัน</div></div>
     </div>
-    <div class="field"><label for="destination">จุดหมายปลายทาง</label><select id="destination"><option value="เชียงใหม่">เชียงใหม่</option><option value="ขอนแก่น">ขอนแก่น</option><option value="กรุงเทพฯ">กรุงเทพฯ</option><option value="หัวหิน">หัวหิน</option><option value="อยุธยา">พระนครศรีอยุธยา</option></select></div>
+    <div class="field"><label for="destination">จุดหมายปลายทาง (ทั่วประเทศไทย)</label><input id="destination" value="เชียงใหม่" placeholder="เช่น เชียงใหม่, อุทยานแห่งชาติเขาใหญ่" required><div class="hint">ใส่จังหวัด อำเภอ หรือชื่อสถานที่จริงได้</div></div>
+    <div class="field"><label for="interests">แนวเที่ยวที่ชอบ</label><input id="interests" placeholder="เช่น ธรรมชาติ วัด พิพิธภัณฑ์ คาเฟ่ ตลาด"></div>
     <div class="two">
      <div class="field"><label for="budget">งบประมาณต่อคน</label><select id="budget"><option value="ประหยัด">ไม่เกิน 1,500 บาท</option><option value="ปานกลาง" selected>1,500–4,000 บาท</option><option value="ยืดหยุ่น">มากกว่า 4,000 บาท</option></select></div>
      <div class="field"><label for="pace">จังหวะการเที่ยว</label><select id="pace"><option value="ช้า" selected>สบาย ๆ พักบ่อย</option><option value="ปานกลาง">ปานกลาง</option></select></div>
@@ -77,46 +79,54 @@ footer{text-align:center;padding:22px;color:var(--muted);font-size:.9rem}
    <div class="result-head"><h2 class="section-title">แผนการเดินทางของคุณ</h2><span class="pill">ตัวอย่างแผน</span></div>
    <p class="sub">ระบบจะจัดตารางตัวอย่างตามข้อมูลที่กรอก</p>
    <div id="results" class="empty">🗺️<br><strong>พร้อมวางแผนทริปแล้วหรือยัง?</strong><br>กรอกข้อมูลทางซ้าย แล้วกด “สร้างแผนการเดินทาง”</div>
-   <div class="button-row"><button class="secondary" id="copyBtn" type="button" hidden>คัดลอกสรุป</button><button class="secondary" id="printBtn" type="button" hidden>พิมพ์ / บันทึก PDF</button></div>
-   <div class="notice"><strong>ข้อควรรู้:</strong> แผนนี้เป็นต้นแบบที่ใช้ข้อมูลตัวอย่าง สถานที่ เวลาเปิดทำการ ความสะดวกสำหรับรถเข็น และการเดินทางจริงยังไม่ได้ตรวจสอบแบบเรียลไทม์ โปรดติดต่อสถานที่ล่วงหน้า และปรึกษาแพทย์เกี่ยวกับข้อจำกัดด้านสุขภาพก่อนเดินทาง</div>
+   <div class="button-row"><button class="secondary" id="copyBtn" type="button" hidden>คัดลอกสรุป</button><button class="secondary" id="printBtn" type="button" hidden>พิมพ์ / บันทึก PDF</button><button class="secondary" id="routeBtn" type="button" hidden>เปิดเส้นทางใน Google Maps</button></div>
+   <div class="live-tools"><h3>ค้นหาสถานที่จริงและเส้นทาง</h3><p class="sub">เปิดผลการค้นหาจาก Google Maps สำหรับสถานที่ทั่วประเทศไทย พร้อมเส้นทางจากต้นทางไปยังจุดหมาย</p><div class="field"><label for="placeQuery">ค้นหาสถานที่จริง</label><input id="placeQuery" placeholder="เช่น ร้านอาหารมีทางลาดในเชียงใหม่"></div><button type="button" class="small-btn" id="searchPlacesBtn">ค้นหาบน Google Maps</button><div id="placeResults" class="status" aria-live="polite">ผลการค้นหาจะเปิดใน Google Maps เพื่อดูข้อมูลล่าสุด เช่น รีวิว เวลาเปิด และการนำทาง</div>
+   <div class="api-box"><strong>สถานะการเชื่อมต่อ:</strong> <span id="aiStatus">AI Backend ยังไม่ได้ตั้งค่า — ใช้แผนสำรองในเว็บ</span><br><span id="placesStatus">สถานที่จริง: ใช้ Google Maps Search (ไม่ต้องใช้ API key)</span></div></div>
+   <div class="notice"><strong>ข้อควรรู้:</strong> เว็บไซต์เปิดค้นหาสถานที่และเส้นทางผ่าน Google Maps ได้ แต่ยังไม่ยืนยันว่าทุกสถานที่มีทางลาด ห้องน้ำ หรือสิ่งอำนวยความสะดวกที่เลือกไว้ แผน AI จะทำงานเมื่อเชื่อม Backend ที่ตั้งค่าแล้วเท่านั้น หากยังไม่เชื่อม ระบบจะใช้แผนสำรองอัตโนมัติ ข้อมูลสุขภาพไม่ควรส่งให้บริการภายนอกโดยไม่จำเป็น โปรดยืนยันข้อมูลกับสถานที่ก่อนเดินทาง</div>
   </section>
  </div>
 </main>
-<footer>AI Travel Planner • Prototype สำหรับช่วยวางแผนทริปอย่างเข้าถึงได้</footer>
+<footer>AI Travel Planner • เครื่องมือช่วยวางแผนเบื้องต้นสำหรับทริปทั่วประเทศไทย</footer>
 <script>
+/* CONFIG: ตั้งค่า API endpoint ของ backend ที่คุณควบคุมเองตรงนี้ (ห้ามใส่ secret API key ในไฟล์หน้าเว็บ) */
+const CONFIG = {
+  // ตัวอย่าง: https://your-domain.example/api/plan
+  AI_PLAN_ENDPOINT: "",
+  // ถ้าต้องการค้นหาสถานที่ด้วย Places API ผ่าน backend: https://your-domain.example/api/places
+  PLACES_ENDPOINT: "",
+  REQUEST_TIMEOUT_MS: 25000
+};
 const $ = id => document.getElementById(id);
-let latestSummary = "";
+let latestSummary = "", latestDestination = "";
 const samplePlaces = {
- "เชียงใหม่":[["09:00","เริ่มวันแบบไม่เร่งรีบ","เลือกร้านอาหารเช้าที่มีที่นั่งและห้องน้ำเข้าถึงได้"],["10:30","สวนหรือแหล่งเรียนรู้","เลือกเส้นทางสั้น มีจุดนั่งพัก และตรวจสอบทางลาดล่วงหน้า"],["12:00","พักรับประทานอาหารกลางวัน","เผื่อเวลาพักและดื่มน้ำตามความเหมาะสม"],["14:00","กิจกรรมเบา ๆ ในร่ม","เลือกสถานที่ใกล้ที่จอดรถ ลดการเดินกลางแดด"]],
+ "เชียงใหม่":[["09:00","อาหารเช้าใกล้ที่พัก","เลือกร้านที่มีที่นั่งและห้องน้ำเข้าถึงได้"],["10:30","สวนหรือแหล่งเรียนรู้","เลือกเส้นทางสั้น มีจุดนั่งพัก และตรวจสอบทางลาดล่วงหน้า"],["12:00","พักรับประทานอาหารกลางวัน","เผื่อเวลาพักและดื่มน้ำตามความเหมาะสม"],["14:00","กิจกรรมเบา ๆ ในร่ม","เลือกสถานที่ใกล้ที่จอดรถ ลดการเดินกลางแดด"]],
  "ขอนแก่น":[["09:00","อาหารเช้าใกล้ที่พัก","เลือกร้านที่เดินทางเข้าได้สะดวก"],["10:30","พิพิธภัณฑ์หรือสวนสาธารณะ","ตรวจสอบพื้นผิว ทางลาด ห้องน้ำ และที่นั่งก่อนเดินทาง"],["12:00","พักกลางวัน","วางช่วงพักยาว ไม่จัดกิจกรรมต่อเนื่อง"],["14:00","คาเฟ่หรือแหล่งเรียนรู้ในร่ม","เลือกสถานที่ที่จอดรถใกล้และไม่ต้องเดินไกล"]],
  "กรุงเทพฯ":[["09:00","เริ่มเที่ยวใกล้ที่พัก","เลือกการเดินทางที่มีจุดลงรถสะดวก"],["10:30","พิพิธภัณฑ์หรือสถานที่ในร่ม","ตรวจสอบลิฟต์ ทางลาด และห้องน้ำสำหรับผู้ใช้รถเข็น"],["12:00","พักกลางวัน","หลีกเลี่ยงช่วงเดินทางหนาแน่นหากทำได้"],["14:00","คาเฟ่หรือกิจกรรมระยะสั้น","เผื่อเวลาเดินทางและพักระหว่างกิจกรรม"]],
- "หัวหิน":[["09:00","อาหารเช้าและพักให้พร้อม","หลีกเลี่ยงกิจกรรมกลางแดดจัด"],["10:30","จุดชมวิวหรือสถานที่ใกล้รถ","ตรวจสอบพื้นทราย พื้นต่างระดับ และระยะทางเดิน"],["12:00","พักกลางวัน","เลือกพื้นที่ร่มและมีห้องน้ำใกล้เคียง"],["14:00","คาเฟ่หรือพักผ่อนในร่ม","ไม่จำเป็นต้องทำกิจกรรมให้ครบ หากรู้สึกเหนื่อยให้พัก"]],
- "อยุธยา":[["09:00","เริ่มจากสถานที่เดินทางเข้าได้สะดวก","ตรวจสอบพื้นอิฐ ทางต่างระดับ และพื้นที่ร่มก่อนเข้าชม"],["10:30","ชมโบราณสถานแบบเลือกจุด","เลือกเพียงจุดใกล้กันและหลีกเลี่ยงการเดินนาน"],["12:00","พักกลางวัน","พักในที่ร่มและดื่มน้ำให้เพียงพอตามคำแนะนำส่วนบุคคล"],["14:00","กิจกรรมเบา ๆ หรือกลับที่พัก","ลดกิจกรรมหากอากาศร้อนหรือมีความเหนื่อยล้า"]]
+ "หัวหิน":[["09:00","อาหารเช้าและพักให้พร้อม","หลีกเลี่ยงกิจกรรมกลางแดดจัด"],["10:30","จุดชมวิวหรือสถานที่ใกล้รถ","ตรวจสอบพื้นทราย พื้นต่างระดับ และระยะทางเดิน"],["12:00","พักกลางวัน","เลือกพื้นที่ร่มและมีห้องน้ำใกล้เคียง"],["14:00","คาเฟ่หรือพักผ่อนในร่ม","หากเหนื่อยให้พัก ไม่จำเป็นต้องทำกิจกรรมให้ครบ"]],
+ "อยุธยา":[["09:00","เริ่มจากสถานที่เดินทางเข้าได้สะดวก","ตรวจสอบพื้นต่างระดับและพื้นที่ร่มก่อนเข้าชม"],["10:30","ชมโบราณสถานแบบเลือกจุด","เลือกจุดใกล้กันและหลีกเลี่ยงการเดินนาน"],["12:00","พักกลางวัน","พักในที่ร่มและดื่มน้ำตามความเหมาะสม"],["14:00","กิจกรรมเบา ๆ หรือกลับที่พัก","ลดกิจกรรมหากอากาศร้อนหรือเหนื่อยล้า"]]
 };
-function createPlan(e){
- e.preventDefault();
- const age = Number($("age").value), days = Number($("days").value), destination = $("destination").value;
- const budget = $("budget").value, pace = $("pace").value, wheelchair = document.querySelector('input[name="wheelchair"]:checked').value;
- const conditions = $("conditions").value.trim() || "ไม่ได้ระบุ";
- const needs = [...document.querySelectorAll('input[name="needs"]:checked')].map(x=>x.value);
- const notes = $("notes").value.trim();
- const paceText = pace === "ช้า" ? "พักบ่อยและมีกิจกรรมไม่แน่น" : "ปานกลาง พร้อมช่วงพัก";
- let html = `<div><p><strong>สรุปผู้เดินทาง</strong></p><p>อายุ ${age} ปี · ${wheelchair === "มี" ? "ใช้รถเข็น" : "ไม่ใช้รถเข็น"} · ${days} วัน · งบประมาณ: ${budget}</p><p><strong>ข้อควรคำนึง:</strong> ${escapeHtml(conditions)}</p><p><strong>สิ่งอำนวยความสะดวก:</strong> ${needs.length ? needs.map(escapeHtml).join(" • ") : "ไม่ได้เลือกเพิ่มเติม"}</p>${notes ? `<p><strong>ความต้องการเพิ่มเติม:</strong> ${escapeHtml(notes)}</p>` : ""}</div>`;
- const places = samplePlaces[destination];
- for(let d=1; d<=days; d++){
-  html += `<div class="day"><h3>วันที่ ${d} · ${destination}</h3>`;
-  places.forEach((p,i)=>{html += `<div class="stop"><div class="time">${p[0]}</div><div><strong>${p[1]}</strong><p>${p[2]}</p></div></div>`;});
-  if(d>1) html += `<p class="hint">วันที่ ${d}: ใช้โครงตารางแบบยืดหยุ่น และเลือกสถานที่ใกล้กันเพื่อลดเวลาเดินทาง</p>`;
-  html += `</div>`;
- }
- html += `<div class="notice"><strong>คำแนะนำเฉพาะทริป:</strong> ${wheelchair==="มี" ? "โทรยืนยันทางลาด ลิฟต์ ห้องน้ำ และพื้นที่กลับรถเข็นกับสถานที่ก่อนเดินทาง" : "เลือกเส้นทางพื้นเรียบ มีที่นั่งพัก และหลีกเลี่ยงการเดินต่อเนื่องนาน ๆ"}; ${age>=80 ? "วางกิจกรรมสั้น ๆ และเผื่อเวลาพักมากเป็นพิเศษ" : "จัดช่วงพักระหว่างกิจกรรมและยืดหยุ่นตามความพร้อมของผู้เดินทาง"} หากมีอาการผิดปกติระหว่างทริปให้หยุดกิจกรรมและขอความช่วยเหลือที่เหมาะสม</div>`;
- $("results").className = "";
- $("results").innerHTML = html;
- latestSummary = $("results").innerText;
- $("copyBtn").hidden = false; $("printBtn").hidden = false;
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function checkedNeeds(){return [...document.querySelectorAll('input[name="needs"]:checked')].map(x=>x.value)}
+function getFormData(){return {age:Number($("age").value),days:Math.trunc(Number($("days").value)),destination:$("destination").value.trim(),budget:$("budget").value,pace:$("pace").value,wheelchair:document.querySelector('input[name="wheelchair"]:checked').value,conditions:$("conditions").value.trim(),accessibilityNeeds:checkedNeeds(),interests:$("interests").value.trim(),notes:$("notes").value.trim(),country:"Thailand"}}
+function fallbackPlan(data){
+ const paceText=data.pace==="ช้า"?"จัดกิจกรรมไม่แน่นและพักบ่อย":"จัดกิจกรรมระดับปานกลาง พร้อมช่วงพัก";
+ const keys=Object.keys(samplePlaces); const matched=keys.find(k=>data.destination.includes(k));
+ const base=matched?samplePlaces[matched]:[["09:00","เริ่มวันใกล้ที่พัก","ค้นหาสถานที่จริงใน Google Maps และเลือกจุดที่เดินทางเข้าได้สะดวก"],["10:30","กิจกรรมหลักที่เหมาะกับผู้เดินทาง","ตรวจสอบทางลาด ลิฟต์ ห้องน้ำ ระยะทางเดิน และที่นั่งพักกับสถานที่โดยตรง"],["12:00","พักกลางวัน","เลือกพื้นที่มีร่มเงา ห้องน้ำ และที่นั่งเหมาะสม"],["14:00","กิจกรรมเบา ๆ หรือกลับที่พัก","เลือกจุดใกล้กันและเปิดเส้นทางใน Google Maps ก่อนออกเดินทาง"]];
+ let html=`<div><p><strong>สรุปผู้เดินทาง</strong></p><p>อายุ ${data.age} ปี · ${data.wheelchair==="มี"?"ใช้รถเข็น":"ไม่ใช้รถเข็น"} · ${data.days} วัน · งบประมาณ: ${escapeHtml(data.budget)}</p><p><strong>จุดหมาย:</strong> ${escapeHtml(data.destination)}</p><p><strong>แนวเที่ยว:</strong> ${escapeHtml(data.interests||"ยืดหยุ่นตามความสะดวก")}</p><p><strong>ข้อควรคำนึง:</strong> ${escapeHtml(data.conditions||"ไม่ได้ระบุ")}</p><p><strong>สิ่งอำนวยความสะดวกที่ต้องการ:</strong> ${data.accessibilityNeeds.length?data.accessibilityNeeds.map(escapeHtml).join(" • "):"ไม่ได้เลือกเพิ่มเติม"}</p>${data.notes?`<p><strong>ความต้องการเพิ่มเติม:</strong> ${escapeHtml(data.notes)}</p>`:""}<p class="tag">แผนสำรอง ไม่ใช่ผลจาก AI</p></div>`;
+ for(let d=1;d<=data.days;d++){html+=`<div class="day"><h3>วันที่ ${d} · ${escapeHtml(data.destination)}</h3>`;base.forEach(p=>html+=`<div class="stop"><div class="time">${p[0]}</div><div><strong>${escapeHtml(p[1])}</strong><p>${escapeHtml(p[2])}</p></div></div>`);html+=`<p class="hint">${paceText}. เวลานี้เป็นตัวอย่าง ควรปรับตามเวลาเปิดทำการ ระยะทาง และความพร้อมของผู้เดินทาง</p></div>`;}
+ html+=`<div class="notice"><strong>เช็กลิสต์การเข้าถึง:</strong> ${data.wheelchair==="มี"?"โทรยืนยันทางลาด ลิฟต์ ห้องน้ำ และพื้นที่กลับรถเข็น":"ตรวจสอบพื้นเรียบ ระยะเดิน และจุดนั่งพัก"} ก่อนเดินทาง; ความต้องการที่เลือกไว้เป็นเกณฑ์ตรวจสอบ ไม่ใช่การรับรองว่าสถานที่มีสิ่งอำนวยความสะดวกครบถ้วน</div>`;
+ return html;
 }
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function requestJSON(url,payload){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),CONFIG.REQUEST_TIMEOUT_MS);try{const res=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),signal:controller.signal});if(!res.ok)throw new Error(`HTTP ${res.status}`);return await res.json()}finally{clearTimeout(timer)}}
+async function createPlan(e){e.preventDefault();const dayInput=$("days");const enteredDays=Number(dayInput.value);if(!Number.isInteger(enteredDays)||enteredDays<1||enteredDays>60){dayInput.setCustomValidity("กรุณาระบุจำนวนวันเป็นจำนวนเต็มตั้งแต่ 1 ถึง 60 วัน");dayInput.reportValidity();dayInput.setCustomValidity("");return;}const data=getFormData();latestDestination=data.destination;const results=$("results");results.className="status";results.textContent="กำลังจัดแผนการเดินทาง…";let html;
+ if(CONFIG.AI_PLAN_ENDPOINT){try{const result=await requestJSON(CONFIG.AI_PLAN_ENDPOINT,data);if(result.html){html=result.html}else if(result.planText){html=`<div class="day"><h3>แผนเที่ยวจาก AI</h3><p>${escapeHtml(result.planText).replace(/\n/g,"<br>")}</p></div>`}else if(Array.isArray(result.days)){html=result.days.map((d,i)=>`<div class="day"><h3>${escapeHtml(d.title||`วันที่ ${i+1}`)}</h3>${(d.activities||[]).map(a=>`<div class="stop"><div class="time">${escapeHtml(a.time||"")}</div><div><strong>${escapeHtml(a.name||a.title||"กิจกรรม")}</strong><p>${escapeHtml(a.description||a.notes||"")}</p>${a.mapsUrl?`<a href="${escapeHtml(a.mapsUrl)}" target="_blank" rel="noopener">เปิดแผนที่</a>`:""}</div></div>`).join("")}</div>`).join("")}else throw new Error("รูปแบบผลลัพธ์ API ไม่ตรงตามที่กำหนด");$("aiStatus").textContent="เชื่อมต่อ AI Backend แล้ว";}catch(err){html=fallbackPlan(data);$("aiStatus").textContent="AI Backend ติดต่อไม่ได้ จึงใช้แผนสำรอง: "+err.message;}}else{html=fallbackPlan(data);$("aiStatus").textContent="AI Backend ยังไม่ได้ตั้งค่า — ใช้แผนสำรองในเว็บ";}
+ results.className="";results.innerHTML=html;latestSummary=results.innerText;$("copyBtn").hidden=false;$("printBtn").hidden=false;$("routeBtn").hidden=false;}
 $("planner").addEventListener("submit",createPlan);
+function mapsSearchURL(query){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(query)}
+$("searchPlacesBtn").addEventListener("click",async()=>{const query=$("placeQuery").value.trim()||`${$("destination").value} สถานที่ท่องเที่ยว ผู้สูงอายุ`;const box=$("placeResults");box.innerHTML="กำลังเปิดผลการค้นหาสถานที่จริง…";
+ if(CONFIG.PLACES_ENDPOINT){try{const result=await requestJSON(CONFIG.PLACES_ENDPOINT,{query,region:"TH",accessibilityNeeds:checkedNeeds()});if(Array.isArray(result.places)&&result.places.length){box.innerHTML=result.places.map(p=>`<div class="place-card"><strong>${escapeHtml(p.name||"สถานที่")}</strong><p>${escapeHtml(p.address||"")}</p><p>${escapeHtml(p.accessibilityNotes||"ข้อมูลการเข้าถึงต้องยืนยันกับสถานที่")}</p><div class="place-actions"><a href="${escapeHtml(p.mapsUrl||mapsSearchURL(p.name+" "+p.address))}" target="_blank" rel="noopener">ดูแผนที่</a>${p.website?`<a href="${escapeHtml(p.website)}" target="_blank" rel="noopener">เว็บไซต์</a>`:""}</div></div>`).join("");return}}catch(e){box.textContent="ค้นหาผ่าน Places Backend ไม่สำเร็จ จะแสดงผลค้นหาจาก Google Maps แทน."}}
+ box.innerHTML=`เปิดผลการค้นหาสำหรับ “${escapeHtml(query)}” ใน Google Maps <div class="place-actions"><a href="${mapsSearchURL(query)}" target="_blank" rel="noopener">ดูสถานที่จริงและรีวิว</a></div><p class="hint">ตรวจสอบเวลาเปิดทำการ โทรถามเรื่องทางลาด ห้องน้ำ ลิฟต์ และรถเข็นโดยตรง เนื่องจากข้อมูลออนไลน์อาจไม่ครบหรือเปลี่ยนแปลงได้</p>`;window.open(mapsSearchURL(query),"_blank","noopener");});
+$("routeBtn").addEventListener("click",()=>{const origin=prompt("ระบุต้นทาง เช่น โรงแรมหรือที่อยู่ (ไม่บังคับ)")||"";const destination=latestDestination||$("destination").value;const url="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(destination)+(origin?"&origin="+encodeURIComponent(origin):"")+"&travelmode=driving";window.open(url,"_blank","noopener");});
 $("copyBtn").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(latestSummary);$("copyBtn").textContent="คัดลอกแล้ว ✓";}catch(e){window.prompt("คัดลอกข้อความด้านล่าง",latestSummary);}});
 $("printBtn").addEventListener("click",()=>window.print());
 </script>
