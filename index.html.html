@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Travel Planner | เที่ยวสบายสำหรับทุกวัย</title>
+<style>
+:root{--navy:#173b4d;--teal:#167d78;--mint:#e9f6f2;--gold:#f4bd62;--ink:#20343b;--muted:#63767b;--line:#dce8e5;--white:#fff;--bg:#f6faf9}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(125deg,#123a4b,#167d78);color:white;padding:22px max(20px,calc((100% - 1120px)/2));}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:1120px;margin:auto}.brand{font-size:1.12rem;font-weight:800;letter-spacing:.2px}.brand span{color:#f8cc7b}.nav small{opacity:.85}
+.hero{max-width:1120px;margin:30px auto 34px;padding:0 20px;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.kicker{display:inline-block;background:#dff4ed;color:#17665f;border-radius:99px;padding:6px 12px;font-size:.9rem;font-weight:700}
+h1{font-size:clamp(2rem,4vw,3.4rem);line-height:1.13;margin:15px 0;color:var(--navy)}.hero p{font-size:1.08rem;color:var(--muted);max-width:610px}
+.hero-art{min-height:230px;border-radius:26px;background:linear-gradient(145deg,#d7f0e8,#f8e7c8);display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;overflow:hidden}.hero-art:after{content:"";position:absolute;width:230px;height:230px;border:2px solid #ffffff80;border-radius:50%;right:-55px;top:-65px}
+main{max-width:1120px;margin:0 auto;padding:0 20px 48px}.section-title{font-size:1.4rem;color:var(--navy);margin:12px 0 6px}.sub{color:var(--muted);margin:0 0 18px}
+.layout{display:grid;grid-template-columns:1fr .9fr;gap:22px;align-items:start}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 24px #163b4d0a}
+label,.label{display:block;font-weight:700;margin-bottom:7px;color:#294951}
+input,select,textarea{width:100%;font:inherit;border:1px solid #cbdcd7;border-radius:12px;padding:12px 13px;background:#fff;color:var(--ink);min-height:48px}
+textarea{min-height:95px;resize:vertical}.field{margin-bottom:17px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hint{font-size:.88rem;color:var(--muted);margin-top:5px}.choice-row{display:flex;flex-wrap:wrap;gap:10px}
+.choice{flex:1;min-width:125px;border:1px solid var(--line);border-radius:13px;padding:12px;display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff}
+.choice input{width:18px;min-height:18px;height:18px;accent-color:var(--teal);margin:0;flex-shrink:0}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.access{display:flex;align-items:flex-start;gap:9px;background:#f7fbfa;border-radius:12px;padding:11px;font-weight:500}.access input{width:18px;height:18px;min-height:18px;margin-top:3px;accent-color:var(--teal);flex-shrink:0}
+button{border:0;border-radius:13px;padding:13px 18px;font:inherit;font-weight:800;cursor:pointer;transition:.2s}
+.primary{width:100%;background:var(--teal);color:white}.primary:hover{background:#106a65}.secondary{background:#e8f4f0;color:#155f5b}.button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.result-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.pill{font-size:.82rem;background:#fff1d7;color:#76521b;border-radius:99px;padding:5px 10px;font-weight:700}
+.empty{border:1px dashed #b9d2cb;border-radius:15px;padding:26px 18px;text-align:center;color:var(--muted);background:#fbfefd}
+.day{border:1px solid var(--line);border-radius:15px;padding:15px;margin-top:13px}.day h3{margin:0 0 9px;color:var(--teal);font-size:1.05rem}.stop{display:grid;grid-template-columns:66px 1fr;gap:10px;padding:10px 0;border-top:1px solid #edf2f0}.time{font-weight:800;color:var(--navy);font-size:.92rem}.stop p{margin:2px 0 0;color:var(--muted);font-size:.94rem}
+.notice{margin-top:14px;padding:12px 14px;background:#fff7e8;border-radius:12px;color:#6f552a;font-size:.9rem}
+footer{text-align:center;padding:22px;color:var(--muted);font-size:.9rem}
+@media(max-width:800px){.hero,.layout{grid-template-columns:1fr}.hero{margin-top:22px}.hero-art{min-height:150px;font-size:4.5rem}.hero{gap:18px}.panel{padding:17px}}
+@media(max-width:460px){.two,.access-grid{grid-template-columns:1fr}.nav small{display:none}.hero{padding:0 16px}main{padding:0 14px 35px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">✦ <span>AI</span> Travel Planner</div><small>วางแผนเที่ยวอย่างใส่ใจ • เดินทางสบาย • ปลอดภัยขึ้น</small></div></header>
+<section class="hero">
+ <div><span class="kicker">ออกแบบทริปให้เหมาะกับผู้สูงอายุ</span>
+ <h1>เที่ยวได้อย่างสบายใจ<br>ในจังหวะของคุณ</h1>
+ <p>สร้างแผนการเดินทางเบื้องต้นโดยคำนึงถึงอายุ โรคประจำตัว การใช้รถเข็น ระยะทางเดิน และเวลาพัก เพื่อให้ผู้สูงอายุและครอบครัววางแผนทริปได้ง่ายขึ้น</p></div>
+ <div class="hero-art" aria-label="ภาพสัญลักษณ์การเดินทาง">🧳 🌿</div>
+</section>
+<main>
+ <div class="layout">
+  <section class="panel">
+   <h2 class="section-title">ข้อมูลผู้เดินทาง</h2><p class="sub">กรอกข้อมูลเท่าที่สะดวก เพื่อช่วยปรับแผนให้เหมาะสม</p>
+   <form id="planner">
+    <div class="two">
+     <div class="field"><label for="age">อายุผู้สูงอายุ (ปี)</label><input id="age" type="number" min="50" max="120" value="70" required><div class="hint">ระบุอายุจริงของผู้เดินทาง</div></div>
+     <div class="field"><label for="days">ระยะเวลาเที่ยว</label><select id="days"><option value="1">1 วัน</option><option value="2" selected>2 วัน</option><option value="3">3 วัน</option></select></div>
+    </div>
+    <div class="field"><label for="destination">จุดหมายปลายทาง</label><select id="destination"><option value="เชียงใหม่">เชียงใหม่</option><option value="ขอนแก่น">ขอนแก่น</option><option value="กรุงเทพฯ">กรุงเทพฯ</option><option value="หัวหิน">หัวหิน</option><option value="อยุธยา">พระนครศรีอยุธยา</option></select></div>
+    <div class="two">
+     <div class="field"><label for="budget">งบประมาณต่อคน</label><select id="budget"><option value="ประหยัด">ไม่เกิน 1,500 บาท</option><option value="ปานกลาง" selected>1,500–4,000 บาท</option><option value="ยืดหยุ่น">มากกว่า 4,000 บาท</option></select></div>
+     <div class="field"><label for="pace">จังหวะการเที่ยว</label><select id="pace"><option value="ช้า" selected>สบาย ๆ พักบ่อย</option><option value="ปานกลาง">ปานกลาง</option></select></div>
+    </div>
+    <div class="field"><span class="label">มีรถเข็นหรือไม่?</span><div class="choice-row">
+      <label class="choice"><input type="radio" name="wheelchair" value="มี" checked> ♿ มีรถเข็น</label>
+      <label class="choice"><input type="radio" name="wheelchair" value="ไม่มี"> เดินได้เอง</label>
+    </div></div>
+    <div class="field"><label for="conditions">โรคประจำตัว / ข้อควรระวังด้านสุขภาพ</label><textarea id="conditions" placeholder="เช่น เบาหวาน ความดันโลหิตสูง โรคหัวใจ แพ้ยา หรือพิมพ์ “ไม่มี”"></textarea><div class="hint">ข้อมูลนี้ใช้ช่วยจัดทริปเบื้องต้นเท่านั้น ไม่ใช่การวินิจฉัยหรือคำแนะนำทางการแพทย์</div></div>
+    <div class="field"><span class="label">สิ่งอำนวยความสะดวกที่ต้องการ</span><div class="access-grid">
+      <label class="access"><input type="checkbox" name="needs" value="ทางลาดและทางเข้าถึงได้" checked> ทางลาด / ทางเข้าถึงได้</label>
+      <label class="access"><input type="checkbox" name="needs" value="ห้องน้ำสำหรับผู้พิการ"> ห้องน้ำสำหรับผู้พิการ</label>
+      <label class="access"><input type="checkbox" name="needs" value="ที่นั่งพักระหว่างทาง" checked> ที่นั่งพักระหว่างทาง</label>
+      <label class="access"><input type="checkbox" name="needs" value="เดินไม่ไกล" checked> เดินไม่ไกล</label>
+      <label class="access"><input type="checkbox" name="needs" value="หลีกเลี่ยงบันได"> หลีกเลี่ยงบันได</label>
+      <label class="access"><input type="checkbox" name="needs" value="ใกล้โรงพยาบาลหรือคลินิก"> ใกล้สถานพยาบาล</label>
+    </div></div>
+    <div class="field"><label for="notes">ความต้องการเพิ่มเติม (ไม่บังคับ)</label><input id="notes" placeholder="เช่น ชอบธรรมชาติ ต้องการร้านอาหารที่มีที่นั่ง"></div>
+    <button class="primary" type="submit">✦ สร้างแผนการเดินทาง</button>
+   </form>
+  </section>
+  <section class="panel" aria-live="polite">
+   <div class="result-head"><h2 class="section-title">แผนการเดินทางของคุณ</h2><span class="pill">ตัวอย่างแผน</span></div>
+   <p class="sub">ระบบจะจัดตารางตัวอย่างตามข้อมูลที่กรอก</p>
+   <div id="results" class="empty">🗺️<br><strong>พร้อมวางแผนทริปแล้วหรือยัง?</strong><br>กรอกข้อมูลทางซ้าย แล้วกด “สร้างแผนการเดินทาง”</div>
+   <div class="button-row"><button class="secondary" id="copyBtn" type="button" hidden>คัดลอกสรุป</button><button class="secondary" id="printBtn" type="button" hidden>พิมพ์ / บันทึก PDF</button></div>
+   <div class="notice"><strong>ข้อควรรู้:</strong> แผนนี้เป็นต้นแบบที่ใช้ข้อมูลตัวอย่าง สถานที่ เวลาเปิดทำการ ความสะดวกสำหรับรถเข็น และการเดินทางจริงยังไม่ได้ตรวจสอบแบบเรียลไทม์ โปรดติดต่อสถานที่ล่วงหน้า และปรึกษาแพทย์เกี่ยวกับข้อจำกัดด้านสุขภาพก่อนเดินทาง</div>
+  </section>
+ </div>
+</main>
+<footer>AI Travel Planner • Prototype สำหรับช่วยวางแผนทริปอย่างเข้าถึงได้</footer>
+<script>
+const $ = id => document.getElementById(id);
+let latestSummary = "";
+const samplePlaces = {
+ "เชียงใหม่":[["09:00","เริ่มวันแบบไม่เร่งรีบ","เลือกร้านอาหารเช้าที่มีที่นั่งและห้องน้ำเข้าถึงได้"],["10:30","สวนหรือแหล่งเรียนรู้","เลือกเส้นทางสั้น มีจุดนั่งพัก และตรวจสอบทางลาดล่วงหน้า"],["12:00","พักรับประทานอาหารกลางวัน","เผื่อเวลาพักและดื่มน้ำตามความเหมาะสม"],["14:00","กิจกรรมเบา ๆ ในร่ม","เลือกสถานที่ใกล้ที่จอดรถ ลดการเดินกลางแดด"]],
+ "ขอนแก่น":[["09:00","อาหารเช้าใกล้ที่พัก","เลือกร้านที่เดินทางเข้าได้สะดวก"],["10:30","พิพิธภัณฑ์หรือสวนสาธารณะ","ตรวจสอบพื้นผิว ทางลาด ห้องน้ำ และที่นั่งก่อนเดินทาง"],["12:00","พักกลางวัน","วางช่วงพักยาว ไม่จัดกิจกรรมต่อเนื่อง"],["14:00","คาเฟ่หรือแหล่งเรียนรู้ในร่ม","เลือกสถานที่ที่จอดรถใกล้และไม่ต้องเดินไกล"]],
+ "กรุงเทพฯ":[["09:00","เริ่มเที่ยวใกล้ที่พัก","เลือกการเดินทางที่มีจุดลงรถสะดวก"],["10:30","พิพิธภัณฑ์หรือสถานที่ในร่ม","ตรวจสอบลิฟต์ ทางลาด และห้องน้ำสำหรับผู้ใช้รถเข็น"],["12:00","พักกลางวัน","หลีกเลี่ยงช่วงเดินทางหนาแน่นหากทำได้"],["14:00","คาเฟ่หรือกิจกรรมระยะสั้น","เผื่อเวลาเดินทางและพักระหว่างกิจกรรม"]],
+ "หัวหิน":[["09:00","อาหารเช้าและพักให้พร้อม","หลีกเลี่ยงกิจกรรมกลางแดดจัด"],["10:30","จุดชมวิวหรือสถานที่ใกล้รถ","ตรวจสอบพื้นทราย พื้นต่างระดับ และระยะทางเดิน"],["12:00","พักกลางวัน","เลือกพื้นที่ร่มและมีห้องน้ำใกล้เคียง"],["14:00","คาเฟ่หรือพักผ่อนในร่ม","ไม่จำเป็นต้องทำกิจกรรมให้ครบ หากรู้สึกเหนื่อยให้พัก"]],
+ "อยุธยา":[["09:00","เริ่มจากสถานที่เดินทางเข้าได้สะดวก","ตรวจสอบพื้นอิฐ ทางต่างระดับ และพื้นที่ร่มก่อนเข้าชม"],["10:30","ชมโบราณสถานแบบเลือกจุด","เลือกเพียงจุดใกล้กันและหลีกเลี่ยงการเดินนาน"],["12:00","พักกลางวัน","พักในที่ร่มและดื่มน้ำให้เพียงพอตามคำแนะนำส่วนบุคคล"],["14:00","กิจกรรมเบา ๆ หรือกลับที่พัก","ลดกิจกรรมหากอากาศร้อนหรือมีความเหนื่อยล้า"]]
+};
+function createPlan(e){
+ e.preventDefault();
+ const age = Number($("age").value), days = Number($("days").value), destination = $("destination").value;
+ const budget = $("budget").value, pace = $("pace").value, wheelchair = document.querySelector('input[name="wheelchair"]:checked').value;
+ const conditions = $("conditions").value.trim() || "ไม่ได้ระบุ";
+ const needs = [...document.querySelectorAll('input[name="needs"]:checked')].map(x=>x.value);
+ const notes = $("notes").value.trim();
+ const paceText = pace === "ช้า" ? "พักบ่อยและมีกิจกรรมไม่แน่น" : "ปานกลาง พร้อมช่วงพัก";
+ let html = `<div><p><strong>สรุปผู้เดินทาง</strong></p><p>อายุ ${age} ปี · ${wheelchair === "มี" ? "ใช้รถเข็น" : "ไม่ใช้รถเข็น"} · ${days} วัน · งบประมาณ: ${budget}</p><p><strong>ข้อควรคำนึง:</strong> ${escapeHtml(conditions)}</p><p><strong>สิ่งอำนวยความสะดวก:</strong> ${needs.length ? needs.map(escapeHtml).join(" • ") : "ไม่ได้เลือกเพิ่มเติม"}</p>${notes ? `<p><strong>ความต้องการเพิ่มเติม:</strong> ${escapeHtml(notes)}</p>` : ""}</div>`;
+ const places = samplePlaces[destination];
+ for(let d=1; d<=days; d++){
+  html += `<div class="day"><h3>วันที่ ${d} · ${destination}</h3>`;
+  places.forEach((p,i)=>{html += `<div class="stop"><div class="time">${p[0]}</div><div><strong>${p[1]}</strong><p>${p[2]}</p></div></div>`;});
+  if(d>1) html += `<p class="hint">วันที่ ${d}: ใช้โครงตารางแบบยืดหยุ่น และเลือกสถานที่ใกล้กันเพื่อลดเวลาเดินทาง</p>`;
+  html += `</div>`;
+ }
+ html += `<div class="notice"><strong>คำแนะนำเฉพาะทริป:</strong> ${wheelchair==="มี" ? "โทรยืนยันทางลาด ลิฟต์ ห้องน้ำ และพื้นที่กลับรถเข็นกับสถานที่ก่อนเดินทาง" : "เลือกเส้นทางพื้นเรียบ มีที่นั่งพัก และหลีกเลี่ยงการเดินต่อเนื่องนาน ๆ"}; ${age>=80 ? "วางกิจกรรมสั้น ๆ และเผื่อเวลาพักมากเป็นพิเศษ" : "จัดช่วงพักระหว่างกิจกรรมและยืดหยุ่นตามความพร้อมของผู้เดินทาง"} หากมีอาการผิดปกติระหว่างทริปให้หยุดกิจกรรมและขอความช่วยเหลือที่เหมาะสม</div>`;
+ $("results").className = "";
+ $("results").innerHTML = html;
+ latestSummary = $("results").innerText;
+ $("copyBtn").hidden = false; $("printBtn").hidden = false;
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+$("planner").addEventListener("submit",createPlan);
+$("copyBtn").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(latestSummary);$("copyBtn").textContent="คัดลอกแล้ว ✓";}catch(e){window.prompt("คัดลอกข้อความด้านล่าง",latestSummary);}});
+$("printBtn").addEventListener("click",()=>window.print());
+</script>
+</body>
+</html>
